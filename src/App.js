@@ -7,7 +7,7 @@ import './App.css';
 let aggregateTextColor = 'green'
 let filterTextColor = 'red'
 let PlayListTextColor = 'black'
-//let headerSize = '50px'
+let headerSize = '50px'
 //let headerStyle = {color : headerColor, 'font-size' : headerSize}
 
 class Aggregate extends Component {
