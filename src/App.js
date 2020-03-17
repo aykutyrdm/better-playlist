@@ -83,7 +83,7 @@ class Filter extends Component {
     return(
       <div style = { {color : filterTextColor} }>
       <img/>
-      <input type = 'text'/>
+      <input type = 'text' onKeyUp = {event => this.props.onTextChange(event.target.value)}/>
       Filter 
       </div>
     );
@@ -115,26 +115,36 @@ class Render extends Component{
 
   constructor() {
     super();
-    this.state = {serverData : {}};
+    this.state = {serverData : {} , filterString : ''};
   }
 
   componentDidMount(){
+
     setTimeout( () => {
       this.setState({serverData : fakeServerData});
-   } ,2000)
+    },1000);
+
+    setTimeout( () => {
+      this.setState({filterString : 'best'})
+    },2000);
   }
 
   render(){
+    let filteredPlayList = this.state.serverData.user ? this.state.serverData.user.playLists.filter( (playLists) => {
+      return playLists.name.toLowerCase().includes(this.state.filterString.toLocaleLowerCase())
+    }) : []
     return(
       <div className="App">
         {this.state.serverData.user ?
         <div>
           <h1> {this.state.serverData.user.name}'s PlayList</h1>
-          <PlayListCounter playLists = {this.state.serverData.user && this.state.serverData.user.playLists}/>
-          <HoursCounter playLists = {this.state.serverData.user && this.state.serverData.user.playLists}/>
-          <Filter/>
-          {
-            this.state.serverData.user.playLists.map((playList) =>{
+
+          <PlayListCounter playLists = {this.state.serverData.user && filteredPlayList}/>
+
+          <HoursCounter playLists = {this.state.serverData.user && filteredPlayList}/>
+
+          <Filter onTextChange = {text => this.setState({filterString : text})}/>
+          {filteredPlayList.map((playList) =>{
               return <Playlist playList = {playList}/>
             })
           }
