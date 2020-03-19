@@ -166,18 +166,17 @@ class Render extends Component{
         }
       })
     })});
-
-
-
-    setTimeout( () => {
-      this.setState({filterString : ''})
-    },2000);
   }
 
   render(){
-    let filteredPlayList = this.state.user && this.state.playLists ? this.state.playLists.filter( (playLists) => {
-      return playLists.name.toLowerCase().includes(this.state.filterString.toLocaleLowerCase())
-    }) : []
+    let filteredPlayList = this.state.user && this.state.playLists 
+    ? this.state.playLists.filter( playLists => {
+      let matchesPlaylist = playLists.name.toLowerCase().includes(this.state.filterString.toLowerCase())
+      let matchesSong = playLists.songs.find(song => song.name.toLowerCase().includes(this.state.filterString.toLowerCase()))
+      return matchesPlaylist || matchesSong
+    })
+    : []
+
     return(
       <div className="App">
 
