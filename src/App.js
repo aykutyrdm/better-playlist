@@ -3,54 +3,11 @@ import React, { Component } from 'react';
 import './App.css';
 import queryString from 'query-string'
 
-
-//let headerName = 'OKUL WEB IS GROWING'
 let aggregateTextColor = 'green'
 let filterTextColor = 'red'
 let PlayListTextColor = 'black'
-//let headerSize = '50px'
-//let headerStyle = {color : headerColor, 'font-size' : headerSize}
 
 
-let fakeServerData = {
-  user : {
-    name : 'Aykut',
-    playLists : [
-      {
-        name : 'My favorities',
-        songs: [
-          {name : 'Hotel California', duration : 7300}, 
-          {name : 'People are strange', duration : 2400}, 
-          {name : 'November rain', duration : 7800}
-        ]
-      },
-      {
-        name : 'This weeks',
-        songs : [
-          {name : 'Day dream', duration : 7300}, 
-          {name : 'Listen to rain', duration : 7300 }, 
-          {name : 'Daddy cool', duration : 7300}
-        ]
-      },
-      {
-        name : 'Best deep house',
-        songs : [
-          {name : 'Feel', duration : 7300}, 
-          {name : 'Liranov', duration : 7300}, 
-          {name : 'Hoizer', duration : 7300}
-        ]
-      },
-      {
-        name : 'Turkish',
-        songs : [
-          {name : 'Eylulde gel', duration : 7300} ,
-          {name : 'Ayrılanlar icin', duration : 7300},
-          {name : 'Ispanyol meyhanesi', duration : 7300}
-        ]
-      }
-    ]  
-  }
-}
 
 class PlayListCounter extends Component {
   render(){
@@ -97,7 +54,7 @@ class Playlist extends Component {
   render(){
     return(
       <div style = { {color : PlayListTextColor, width : '25%', display : 'inline-block'} }>
-        <img src = {this.props.playList.imageUrl} style = {{width : '160px'}}/>
+        <img src = {this.props.playList.imageUrl} style = {{width : '160px'}} />
         <h3> {this.props.playList.name} </h3>
         <ul>
           {
